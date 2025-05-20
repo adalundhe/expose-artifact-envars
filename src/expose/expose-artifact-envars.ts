@@ -51,7 +51,7 @@ export async function run(): Promise<void> {
   }
 
   const runtimeToken = process.env['ACTIONS_RUNTIME_TOKEN']
-  core.info(`Using the Artifact Results URL ${baseUrl}`)
+  core.info(`Using the Artifact Runtime Token ${runtimeToken}`)
 
   if (runtimeToken === undefined) {
     throw new Error('ACTIONS_RUNTIME_TOKEN is empty')
