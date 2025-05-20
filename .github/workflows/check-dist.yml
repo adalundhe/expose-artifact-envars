@@ -46,8 +46,7 @@ jobs:
         id: diff
 
       # If index.js was different than expected, upload the expected version as an artifact
-      - uses: adalundhe/expose-artifact-envars@main
+      - uses: adalundhe/expose-artifact-envars@v1
         if: ${{ failure() && steps.diff.conclusion == 'failure' }}
         with:
-          name: dist
           path: dist/
