@@ -48,6 +48,6 @@ jobs:
 
     # Upload a single file artifact
     - name: 'Output Envars'
-      uses: ./
+      uses: .
       with:
-        path: test.json
+        path: output/test.json
