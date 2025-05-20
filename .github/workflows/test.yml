@@ -48,6 +48,6 @@ jobs:
 
     # Upload a single file artifact
     - name: 'Output Envars'
-      uses: adalundhe/expose-artifact-envars@main
+      uses: adalundhe/expose-artifact-envars@v1
       with:
         path: output/test.json
