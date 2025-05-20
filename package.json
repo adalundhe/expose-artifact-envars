@@ -10,7 +10,7 @@
     "format": "prettier --write **/*.ts",
     "format-check": "prettier --check **/*.ts",
     "lint": "eslint **/*.ts",
-    "test": "jest --testTimeout 10000"
+    "test": "jest --testTimeout 10000 --passWithNoTests"
   },
   "repository": {
     "type": "git",

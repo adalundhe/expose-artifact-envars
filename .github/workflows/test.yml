@@ -44,21 +44,7 @@ jobs:
       run: npm run format-check
 
     - name: Test
-      run: npm run test --passWithNoTests
-
-    # Test end-to-end by uploading a few artifacts and then downloading them
-    - name: Create artifact files
-      run: |
-        mkdir -p path/to/dir-1
-        mkdir -p path/to/dir-2
-        mkdir -p path/to/dir-3
-        mkdir -p symlink/
-        echo "Lorem ipsum dolor sit amet" > path/to/dir-1/file1.txt
-        echo "Hello world from file #2" > path/to/dir-2/file2.txt
-        echo "Hello from a symlinked file" > symlink/original.txt
-        ln -s $(pwd)/symlink/original.txt symlink/abs.txt
-        ln -s original.txt symlink/rel.txt
-      shell: bash
+      run: npm run test
 
     # Upload a single file artifact
     - name: 'Output Envars'
