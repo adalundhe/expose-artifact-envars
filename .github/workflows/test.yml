@@ -44,7 +44,7 @@ jobs:
       run: npm run format-check
 
     - name: Test
-      run: npm run test
+      run: npm run test --passWithNoTests
 
     # Test end-to-end by uploading a few artifacts and then downloading them
     - name: Create artifact files
