@@ -8,4 +8,4 @@ inputs:
 
 runs:
   using: 'node20'
-  main: 'dist/upload/index.js'
+  main: 'dist/expose/index.js'
