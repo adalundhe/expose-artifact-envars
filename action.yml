@@ -1,0 +1,11 @@
+name: 'Expose Artifact Upload Envars'
+description: 'Expose the envars required to upload an actions artiface'
+author: 'GitHub'
+inputs:
+  path:
+    description: 'The path to output the required envars as a JSON file'
+    required: true
+
+runs:
+  using: 'node20'
+  main: 'dist/upload/index.js'
