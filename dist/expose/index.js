@@ -25725,6 +25725,30 @@ exports.run = void 0;
 const core = __importStar(__nccwpck_require__(2186));
 const input_helper_1 = __nccwpck_require__(4916);
 const fs_1 = __importDefault(__nccwpck_require__(7147));
+const path_1 = __importDefault(__nccwpck_require__(1017));
+const pathExistsAsync = (path) => __awaiter(void 0, void 0, void 0, function* () {
+    const promise = new Promise((resolve, reject) => {
+        try {
+            resolve(fs_1.default.existsSync(path));
+        }
+        catch (err) {
+            reject(err);
+        }
+    });
+    return yield promise;
+});
+const createOutputFile = (filepath, envars) => __awaiter(void 0, void 0, void 0, function* () {
+    const outputFile = path_1.default.basename(filepath);
+    const directory = filepath.replace(outputFile, '');
+    const directoryExists = yield pathExistsAsync(directory);
+    core.info(`Directory exists? - ${directoryExists}`);
+    if (!directoryExists) {
+        core.info(`Creating directory at - ${directory}`);
+        yield fs_1.default.promises.mkdir(directory, { recursive: true });
+    }
+    core.info(`Writing envars to path ${filepath}`);
+    yield fs_1.default.promises.writeFile(filepath, JSON.stringify(envars));
+});
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
         const inputs = (0, input_helper_1.getInputs)();
@@ -25735,11 +25759,13 @@ function run() {
         }
         const runtimeToken = process.env['ACTIONS_RUNTIME_TOKEN'];
         core.info(`Using the Artifact Results URL ${baseUrl}`);
-        const actionsEnvars = {
+        if (runtimeToken === undefined) {
+            throw new Error('ACTIONS_RUNTIME_TOKEN is empty');
+        }
+        yield createOutputFile(inputs.outputPath, {
             actions_results_url: new URL(baseUrl).origin,
             actions_runtime_token: runtimeToken
-        };
-        yield fs_1.default.promises.writeFile(inputs.outputPath, JSON.stringify(actionsEnvars));
+        });
     });
 }
 exports.run = run;
