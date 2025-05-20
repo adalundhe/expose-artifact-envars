@@ -25,11 +25,14 @@ const createOutputFile = async (filepath: string, envars: Envars) => {
   const directory = filepath.replace(outputFile, '')
 
   const directoryExists = await pathExistsAsync(directory)
+  core.info(`Directory exists? - ${directoryExists}`)
 
   if (!directoryExists) {
+    core.info(`Creating directory at - ${directory}`)
     await fs.promises.mkdir(directory, {recursive: true})
   }
 
+  core.info(`Writing envars to path ${filepath}`)
   await fs.promises.writeFile(filepath, JSON.stringify(envars))
 }
 
