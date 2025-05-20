@@ -25,4 +25,3 @@ jobs:
       uses: actions/publish-action@v0.3.0
       with:
         source-tag: ${{ env.TAG_NAME }}
-        slack-webhook: ${{ secrets.SLACK_WEBHOOK }}
