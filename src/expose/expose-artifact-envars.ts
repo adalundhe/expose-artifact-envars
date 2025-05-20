@@ -9,6 +9,10 @@ type Envars = {
 }
 
 const pathExistsAsync = async (path: string): Promise<boolean> => {
+  if (path.length == 0) {
+    return true
+  }
+
   const promise = new Promise<boolean>((resolve, reject) => {
     try {
       resolve(fs.existsSync(path))

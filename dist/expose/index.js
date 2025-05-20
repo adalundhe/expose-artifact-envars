@@ -25727,6 +25727,9 @@ const input_helper_1 = __nccwpck_require__(4916);
 const fs_1 = __importDefault(__nccwpck_require__(7147));
 const path_1 = __importDefault(__nccwpck_require__(1017));
 const pathExistsAsync = (path) => __awaiter(void 0, void 0, void 0, function* () {
+    if (path.length == 0) {
+        return true;
+    }
     const promise = new Promise((resolve, reject) => {
         try {
             resolve(fs_1.default.existsSync(path));
